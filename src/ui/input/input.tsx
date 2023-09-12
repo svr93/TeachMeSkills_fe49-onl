@@ -17,14 +17,20 @@ export const Input: React.FC<Props> = ({ labelText, error, ...restProps }) => {
 
 const Label = styled.label`
   display: block;
-  width: fit-content;
+  font-weight: 500;
+  width: 100%;
+  line-height: 30px;
 `;
 
 const InputWrapper = styled.input<{ $borderColor?: string }>`
   all: unset;
   box-sizing: border-box;
   border: 1px solid ${({ $borderColor }) => $borderColor || 'black'};
-
+  border-radius: 2px;
+  padding: 5px;
+  width: 100%;
+  font-size: 14px;
+  background-color: #ffffff;
   &:focus-visible {
     border: 1px solid ${({ $borderColor }) => $borderColor || '#CCCCCCCC'};
   }

@@ -1,18 +1,21 @@
 import './App.css';
-
-import { Menu } from '#ui/menu/menu';
-import { TestForm } from './features/test-form/test-form';
+import { PostList } from './features/postlist/postList';
+import { Header } from './features/header/header';
+import { SignIn } from './features/pages/sign-in';
+import { SignUp } from './features/pages/sing-up';
+import { Success } from './features/pages/success';
+import { SelectPostCard } from './features/pages/select-post';
+import { PostCard } from './post.date';
 
 function App() {
   return (
-    <div>
-      <Menu
-        items={[
-          { id: '1', title: 'item 1' },
-          { id: '2', title: 'item 2' },
-        ]}
-      />
-      <TestForm />
+    <div className="App">
+      {/* <Header />
+      <PostList postCard={PostCard} /> */}
+      <SignIn />
+      <SignUp />
+      <Success />
+      <SelectPostCard />
     </div>
   );
 }

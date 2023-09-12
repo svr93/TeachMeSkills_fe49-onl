@@ -22,6 +22,7 @@ export const Menu: React.FC<Props> = ({ items }) => {
             <li key={id}>{title}</li>
           ))}
         </ul>
+        
       )}
     </div>
   );
