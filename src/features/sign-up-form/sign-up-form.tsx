@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
+import { setName } from './sign-up-form.slice';
+import { useAppDispatch, useAppSelector } from '#hooks';
 
 export const SignUpForm: React.FC = () => {
-  const [name, setName] = useState('');
+  const dispatch = useAppDispatch();
+  const name = useAppSelector(({ signUpForm }) => signUpForm.name);
+
   const [email, setEmail] = useState('');
 
   const [password, setPassword] = useState('');
@@ -21,20 +25,11 @@ export const SignUpForm: React.FC = () => {
 
   return (
     <form>
-      {/* <TabPanel
-        items={[
-          { id: '1', title: 'first' },
-          { id: '2', title: 'second' },
-          { id: '3', title: 'third' },
-        ]}
-        activeId={activeTabId}
-        onTabClick={setActiveTabId} 
-      /> */}
       <Input
         type="text"
         labelText="Name"
         value={name}
-        onChange={({ currentTarget }) => setName(currentTarget.value)}
+        onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
       />
       <Input
         type="email"
