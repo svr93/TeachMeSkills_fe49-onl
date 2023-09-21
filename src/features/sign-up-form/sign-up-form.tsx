@@ -1,13 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
 import { setName } from './sign-up-form.slice';
 import { useAppDispatch, useAppSelector } from '#hooks';
 import { register } from '#features/auth/registration.slice';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUpForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const name = useAppSelector(({ signUpForm }) => signUpForm.name);
+
+  const isCompleted = useAppSelector(
+    ({ registration }) => registration.isCompleted
+  );
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isCompleted) {
+      navigate('/sign-up-confirmation');
+    }
+  }, [isCompleted, navigate]);
 
   const [email, setEmail] = useState('');
 

@@ -9,6 +9,10 @@ function Root() {
         <Route path="/">
           <Route index element={<Link to="/sign-up">Go to sign up</Link>} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route
+            path="/sign-up-confirmation"
+            element={<div>confirmation</div>}
+          />
         </Route>
       </Routes>
     </div>

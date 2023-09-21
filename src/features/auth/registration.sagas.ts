@@ -1,8 +1,27 @@
-import { takeLatest } from 'typed-redux-saga';
-import { register } from './registration.slice';
+import { call, put, takeLatest } from 'typed-redux-saga';
+import {
+  register,
+  registerFailure,
+  registerSuccess,
+} from './registration.slice';
+import { api } from './api';
 
 export function* registerSaga() {
-  yield takeLatest(register, function* ({ payload }) {
-    console.log('registerSaga', payload);
+  yield takeLatest(register, function* registerHandler({ payload }) {
+    const { isOk } = yield* call(api.register, payload);
+
+    if (isOk) {
+      yield put(registerSuccess()); // put == dispatch
+    } else {
+      yield put(registerFailure());
+    }
   });
 }
+
+// what saga is doing:
+/*
+function async call(fn, args) {
+  const result = await fn(args);
+  registerHandler.next(result);
+}
+*/
